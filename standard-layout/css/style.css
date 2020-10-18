@@ -1,7 +1,29 @@
 @charset "UTF-8";
 
+html {
+  font-size: 62.5%; /* ブラウザの標準 16px に 62.5% を掛けて 10pxに */
+}
+
+body {
+  color: #333;
+  font-size: 1.2rem; /* html要素に対して1.2倍 */
+  font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+a:link, a:visited, a:hover, a:active {
+  color: #d03c56;
+  text-decoration: none; /* 下線を消す */
+}
+
 .header {
   width: 100%;
+  padding: 28px 0 10px;
+  background: url('../images/bg-header.gif') repeat-x; /* x方向にリピートして節約 */
+  box-shadow: 0 0 10px 1px #e3e3e3; /* xずれ yずれ [ぼかしサイズ] [拡張サイズ] 影色 */
 }
 
 .wrapper {
@@ -10,7 +32,7 @@
 }
 
 .main {
-  display: block;
+  display: block; /* main要素非対応のブラウザのために */
   float: left;
   width: 660px;
 }
@@ -24,12 +46,13 @@
   width: 100%;
 }
 
-.clearfix::after {
+.clearfix::after { /* floatの高さを親要素は把握できないため、floatをclearした要素を追加 */
   content: '';
   display: block;
   clear: both;
 }
 
+/* 検証用
 .header, .main, .sidemenu, .footer {
   border: 1px solid #aaa;
   background-color: #ccc;
@@ -41,4 +64,23 @@
 
 .main, .sidemenu {
   height: 500px;
+}
+*/
+
+.logo {
+  width: 225px; /* サイトロゴ幅 */
+  height: 56px; /* サイトロゴ高さ */
+  margin: 0 auto; /* 中央寄せ */
+  background: url('../images/logo.png') no-repeat;
+  /* テキスト非表示対応（検索エンジン対策） */
+  text-indent: 100%; /* 1.テキスト前のindexを100%にして折り返させる */
+  white-space: nowrap; /* 2.折り返しを無効にして画面の外にテキストを追い出す */
+  overflow: hidden; /* 3.画面からはみ出た部分は非表示にする */
+  /* テキスト非表示対応（検索エンジン対策） */
+}
+
+.logo a {
+  display: block; /* inline -> block にすることで、width/heightを指定可能に */
+  width: 100%;
+  height: 100%;
 }
